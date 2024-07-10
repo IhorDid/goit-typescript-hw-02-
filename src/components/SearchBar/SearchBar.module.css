@@ -1,0 +1,12 @@
+.input {
+  width: 250px;
+  padding: 8px;
+  margin-right: 20px;
+  border-radius: 5px;
+  border: 1px solid rgb(138, 137, 137);
+  transition: all 0.5s;
+}
+
+.input:hover {
+  border: 1px solid blue;
+}
