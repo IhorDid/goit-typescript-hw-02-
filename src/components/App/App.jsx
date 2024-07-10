@@ -1,13 +1,13 @@
-import ImageGallery from "./ImageGallery/ImageGallery";
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-import SearchBar from "./SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import SearchBar from "../SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { fetchArticles } from "../api";
-import Loader from "./Loader/Loader";
+import { fetchArticles } from "../../api";
+import Loader from "../Loader/Loader";
 import "modern-normalize";
 import "./App.css";
-import ImageModal from "./ImageModal/ImageModal";
+import ImageModal from "../ImageModal/ImageModal";
 
 const App = () => {
   const [query, setQuery] = useState("");
