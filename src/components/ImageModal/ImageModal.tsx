@@ -14,7 +14,26 @@ const customStyles = {
   },
 };
 
-const ImageModal = ({ modalIsOpen, closeModal, selectedImage }) => {
+interface Articles {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+}
+
+interface ImageModalProps {
+  selectedImage: Articles | null;
+  modalIsOpen: boolean;
+  closeModal: () => void;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({
+  modalIsOpen,
+  closeModal,
+  selectedImage,
+}) => {
   return (
     <div>
       <Modal
