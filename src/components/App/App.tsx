@@ -9,31 +9,39 @@ import "modern-normalize";
 import "./App.css";
 import ImageModal from "../ImageModal/ImageModal";
 
-const App = () => {
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [loadMore, setLoadMore] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+interface Articles {
+  id: string;
+  alt_description: string;
+  urls: {
+    small: string;
+  };
+}
 
-  const searchArticles = async (newQuery) => {
+const App = () => {
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [articles, setArticles] = useState<Articles[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [loadMore, setLoadMore] = useState<boolean>(false);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Articles | null>(null);
+
+  const searchArticles = async (newQuery: string): Promise<void> => {
     setQuery(`${Date.now()}/${newQuery}`);
     setArticles([]);
     setPage(1);
   };
 
-  const handleMore = () => {
+  const handleMore = (): void => {
     setPage(page + 1);
   };
 
-  const handleOpenModal = (image) => {
+  const handleOpenModal = (image: Articles): void => {
     setSelectedImage(image);
     setIsOpen(true);
   };
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setIsOpen(false);
     setSelectedImage(null);
   };
@@ -48,6 +56,7 @@ const App = () => {
         setLoading(true);
         const data = await fetchArticles(query.split("/")[1], page);
         setArticles((prev) => [...prev, ...data.results]);
+        console.log(data.results);
         if (page >= data.total_pages) {
           setLoadMore(true);
         }
