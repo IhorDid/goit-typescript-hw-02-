@@ -8,10 +8,10 @@ interface ArticleResponse {
   total_pages: number;
 }
 
-const fetchArticles = async <T extends ArticleResponse>(
+const fetchArticles = async (
   query: string,
   page: number
-): Promise<T> => {
+): Promise<ArticleResponse> => {
   const params = new URLSearchParams({
     query,
     page: page.toString(),
@@ -19,7 +19,7 @@ const fetchArticles = async <T extends ArticleResponse>(
     client_id: "2xjo4dpW9gmhbpr2DYZLs9dosiYN5QdOWUU2CQ9-f-E",
   });
 
-  const { data } = await axios.get<T>(`/search/photos?${params}`);
+  const { data } = await axios.get<ArticleResponse>(`/search/photos?${params}`);
   return data;
 };
 
