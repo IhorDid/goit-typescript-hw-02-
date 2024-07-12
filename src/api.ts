@@ -19,7 +19,9 @@ const fetchArticles = async (
     client_id: "2xjo4dpW9gmhbpr2DYZLs9dosiYN5QdOWUU2CQ9-f-E",
   });
 
-  const { data } = await axios.get<ArticleResponse>(`/search/photos?${params}`);
+  const { data }: { data: ArticleResponse } = await axios.get(
+    `/search/photos?${params}`
+  );
   return data;
 };
 
