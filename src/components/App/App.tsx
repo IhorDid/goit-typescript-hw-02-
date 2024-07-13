@@ -17,6 +17,11 @@ interface Articles {
     regular: string;
   };
 }
+interface ArticleResponse {
+  results: any[];
+  total: number;
+  total_pages: number;
+}
 
 const App = () => {
   const [query, setQuery] = useState<string>("");
@@ -55,7 +60,10 @@ const App = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await fetchArticles(query.split("/")[1], page);
+        const data: ArticleResponse = await fetchArticles(
+          query.split("/")[1],
+          page
+        );
         setArticles((prev) => [...prev, ...data.results]);
         console.log(data.results);
         if (page >= data.total_pages) {
